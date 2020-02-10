@@ -4,10 +4,12 @@ const typewritten = document.querySelector(".typewritten");
 let sentence = typewritten.textContent
 
 const findTheLenghtOfSentence = sentence => sentence.length
+const randomTimeOffset = () => 4000 - (Math.random() * 2000)
 
-const randomTimeOffset = () => Math.random() * 1000
-
+let randomDelay = randomTimeOffset();
 let i = 0;
+
+
 
 const showNextLetter = (sentence) => {
   typewritten.textContent = sentence.substring(0, i)
@@ -15,16 +17,19 @@ const showNextLetter = (sentence) => {
 
 
 
-let nextLetterInteval = setInterval(() => {
-  i++
-  showNextLetter(sentence)
-  stopInterval(i)
-  console.log(i);
 
-}, 1000);
+const printSentence = setInterval(() => {
 
-function stopInterval(i) {
-  if (i == findTheLenghtOfSentence(sentence)) {
-    clearInterval(nextLetterInteval)
-  }
-}
+  let nextLetterInteval = setInterval(() => {
+    i++
+    showNextLetter(sentence)
+    randomDelay = randomTimeOffset();
+
+    if (i == findTheLenghtOfSentence(sentence)) {
+      clearInterval(nextLetterInteval)
+      clearInterval(printSentence);
+    }
+
+  }, randomDelay);
+
+}, 500);
