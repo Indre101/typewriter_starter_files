@@ -11,25 +11,23 @@ let i = 0;
 
 
 
-const showNextLetter = (sentence) => {
+const getNextLetter = (sentence) => {
   typewritten.textContent = sentence.substring(0, i)
 }
 
 
-
-
-const printSentence = setInterval(() => {
-
-  let nextLetterInteval = setInterval(() => {
+let addNextLetter = () => {
+  const intervalOne = setTimeout(() => {
     i++
-    showNextLetter(sentence)
+    console.log("object");
+    getNextLetter(sentence)
     randomDelay = randomTimeOffset();
 
     if (i == findTheLenghtOfSentence(sentence)) {
-      clearInterval(nextLetterInteval)
       clearInterval(printSentence);
     }
 
   }, randomDelay);
+}
 
-}, 500);
+const printSentence = setInterval(addNextLetter, 500);
