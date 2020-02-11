@@ -1,5 +1,6 @@
 "use strict";
-
+const soundBtn = document.querySelector(".sound")
+const startBtn = document.querySelector(".start");
 const typeKeyOne = new Audio('typekey1.mp3');
 const typeKeyTwo = new Audio('typekey2.mp3');
 const typeKeySpace = new Audio('typespace.mp3');
@@ -34,17 +35,20 @@ function printSentences(index) {
 
 
 let soundStatus = false;
-document.querySelector(".sound").onclick = function () {
+soundBtn.onclick = function () {
   if (!soundStatus) {
     audioSounds.forEach(audios => audios.muted = false);
+    soundBtn.dataset.status = "clicked"
     soundStatus = true;
   } else {
+    soundBtn.dataset.status = ""
     soundStatus = false;
   }
 }
 
 
-document.querySelector(".start").onclick = function () {
+startBtn.onclick = function () {
+  startBtn.dataset.status = "clicked"
   printSentences(index)
 }
 
@@ -87,7 +91,7 @@ function addSounds(character, sentence, counter) {
   // console.log(sentence.indexOf(character), character);
   if (counter == sentence.length - 1) {
     audioSounds[3].play();
-    randomDelay += 5000;
+    randomDelay += 2000;
   } else if (character != " ") {
     audioSounds[Math.floor(Math.random() * 2)].play();
   } else if (character == " ") {

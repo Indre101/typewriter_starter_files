@@ -1,3 +1,30 @@
 .typewritten {
     font-family: 'Special Elite', cursive;
 }
+
+button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10vw;
+    height: 10vw;
+    background-position: center;
+    border: none;
+}
+
+
+.sound {
+    background-image: url(./no-sound.svg);
+}
+
+.sound[data-status="clicked"] {
+    background-image: url(./sound.svg);
+}
+
+.start {
+    background-image: url(./start.svg);
+}
+
+.start[data-status="clicked"] {
+    background-image: url(./disabled-start.svg);
+
+}
