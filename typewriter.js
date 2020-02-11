@@ -15,6 +15,9 @@ const sentences = [];
 
 typewritten.forEach(typewrittenSentence => {
   typewrittenSentence.setAttribute("data-sentence", typewrittenSentence.textContent)
+  let senten = typewrittenSentence.textContent
+  let numberOfLineBreaks = senten.includes('<br>');
+  console.log(numberOfLineBreaks);
   typewrittenSentence.textContent = " "
   sentences.push(typewrittenSentence.dataset.sentence);
 })
@@ -22,7 +25,7 @@ typewritten.forEach(typewrittenSentence => {
 
 
 let index = 0;
-
+console.log(sentences);
 
 function printSentences(index) {
   let counter = 0;

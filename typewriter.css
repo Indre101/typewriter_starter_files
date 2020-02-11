@@ -9,6 +9,7 @@ button {
     height: 10vw;
     background-position: center;
     border: none;
+    cursor: pointer;
 }
 
 
@@ -22,9 +23,12 @@ button {
 
 .start {
     background-image: url(./start.svg);
+
 }
 
 .start[data-status="clicked"] {
     background-image: url(./disabled-start.svg);
+    pointer-events: none;
+
 
 }
