@@ -33,17 +33,39 @@ function printSentences(index) {
 }
 
 
+let soundStatus = false;
+document.querySelector(".sound").onclick = function () {
+  if (!soundStatus) {
+    audioSounds.forEach(audios => audios.muted = false);
+    soundStatus = true;
+  } else {
+    soundStatus = false;
+  }
+}
+
+
+document.querySelector(".start").onclick = function () {
+  printSentences(index)
+}
+
 function typeWritte(sentence, placetoPrintTheText, counter) {
   setTimeout(() => {
-    addSounds(getNextLetter(counter, sentence), sentence, counter);
+    if (!soundStatus) {
+      audioSounds.forEach(audios => audios.muted = true);
+    } else {
+      addSounds(getNextLetter(counter, sentence), sentence, counter)
+    }
+
+    // addSounds(getNextLetter(counter, sentence), sentence, counter);
 
     if (counter < sentence.length - 1) {
+
       placetoPrintTheText.textContent += getNextLetter(counter, sentence);
       counter++
       typeWritte(sentence, placetoPrintTheText, counter)
 
+
     } else {
-      console.log("end");
       // Start new sentence
       index++
       counter = 0;
@@ -52,7 +74,6 @@ function typeWritte(sentence, placetoPrintTheText, counter) {
   }, randomDelay);
 
   randomDelay = randomTimeOffset();
-
 }
 
 
@@ -71,25 +92,5 @@ function addSounds(character, sentence, counter) {
     audioSounds[Math.floor(Math.random() * 2)].play();
   } else if (character == " ") {
     audioSounds[2].play();
-  }
-}
-
-let soundStatus = false;
-silenceSounds(soundStatus);
-
-document.querySelector("button").onclick = function () {
-  printSentences(index)
-  // if (soundStatus = true) {
-
-  // }
-}
-
-function silenceSounds(status) {
-  if (!status) {
-    audioSounds.forEach(audios => audios.pause());
-
-  } else {
-    audioSounds.forEach(audios => audios.play());
-
   }
 }
