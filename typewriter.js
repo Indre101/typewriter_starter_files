@@ -6,29 +6,20 @@ const typewritten = document.querySelector(".typewritten");
 let sentence = typewritten.textContent
 typewritten.textContent = " "
 
-const findTheLenghtOfSentence = sentence => sentence.length
-const randomTimeOffset = () => Math.floor(Math.random() * 500) + 400;
+const randomTimeOffset = () => Math.floor(Math.random() * 1500) + 500;
 
-let i = 0;
 let randomDelay = randomTimeOffset();
+let i = 0;
 
-const getNextLetter = (sentence) => {
-  sentence = sentence.charAt(i);
-  return sentence;
-}
-
-
-
-let newSentence = getNextLetter(sentence)
 
 function typeWritte() {
-  const intervalOne = setInterval(() => {
+  console.log(randomDelay);
+  setTimeout(() => {
     randomDelay = randomTimeOffset();
-    newSentence = getNextLetter(sentence);
+
     if (i <= sentence.length) {
-      typewritten.textContent = typewritten.textContent + newSentence;
+      typewritten.textContent += sentence.charAt(i);
       i++
-      clearInterval(intervalOne);
       typeWritte()
     }
   }, randomDelay);
