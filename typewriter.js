@@ -15,9 +15,15 @@ const sentences = [];
 
 typewritten.forEach(typewrittenSentence => {
   typewrittenSentence.setAttribute("data-sentence", typewrittenSentence.textContent)
-  let senten = typewrittenSentence.textContent
-  let numberOfLineBreaks = senten.includes('<br>');
-  console.log(numberOfLineBreaks);
+
+  // if (typewrittenSentence.querySelectorAll("br")) {
+  //   typewrittenSentence.querySelectorAll("br").forEach(br => {
+  //     let sen = typewrittenSentence.textContent
+  //     sen.replace("<br/>>", ",")
+  //     console.log(sen);
+  //   })
+  // }
+
   typewrittenSentence.textContent = " "
   sentences.push(typewrittenSentence.dataset.sentence);
 })
