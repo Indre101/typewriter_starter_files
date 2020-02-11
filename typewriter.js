@@ -2,27 +2,28 @@
 
 const audio = new Audio('typekey1.mp3');
 
-const typewritten = document.querySelector(".typewritten");
-let sentence = typewritten.textContent
-typewritten.textContent = " "
-
-const randomTimeOffset = () => Math.floor(Math.random() * 1500) + 500;
-
+const typewritten = document.querySelectorAll(".typewritten");
+const randomTimeOffset = () => Math.floor(Math.random() * 500) + 100;
 let randomDelay = randomTimeOffset();
-let i = 0;
+
+typewritten.forEach(typewrittenSentence => {
+  let sentence = typewrittenSentence.textContent
+  typewrittenSentence.textContent = " "
+  let counter = 0;
+
+  typeWritte(sentence, typewrittenSentence, counter);
 
 
-function typeWritte() {
-  console.log(randomDelay);
+})
+
+
+function typeWritte(sentence, typewrittenSentence, counter) {
+  randomDelay = randomTimeOffset();
   setTimeout(() => {
-    randomDelay = randomTimeOffset();
-
-    if (i <= sentence.length) {
-      typewritten.textContent += sentence.charAt(i);
-      i++
-      typeWritte()
+    if (counter <= sentence.length) {
+      typewrittenSentence.textContent += sentence.charAt(counter);
+      counter++
+      typeWritte(sentence, typewrittenSentence, counter)
     }
   }, randomDelay);
 }
-
-typeWritte();
